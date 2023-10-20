@@ -15,7 +15,7 @@ class News(models.Model):
         on_delete=models.CASCADE,
         related_name="news"
     )
-    created_at = models.DateTimeField()
+    created_at = models.DateField()
     image = models.ImageField(
         upload_to="img", null=True, blank=True
     )
