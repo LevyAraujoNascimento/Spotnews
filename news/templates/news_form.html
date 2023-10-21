@@ -2,24 +2,13 @@
 {% load static %}
 
 {% block title %}
-    Página de Detalhes da Notícia
+    Formulário para Nova Notícia
 {% endblock %}
 
 {% block content %}
-  <div>
-    <h1 class="news-title">{{ news.title }}</h1>
-    <p class="news-content">{{ news.content }}</p>
-    <div>
-      {% for category in news.categories.all %}
-      <span class="news-categories">
-        {{ category.name }}
-      </span>
-      {% endfor %}
-    </div>
-    <span class="news-author">{{ news.author.name }}</span>
-    {% if news.image %}
-    <img src="{% static news.image.url %}" alt="{{ news.title }}">
-    {% endif %}
-    <span class="news-date">{{ news.created_at|date:"d/m/Y" }}</span>
-  </div>
+    <form method="post" action="{% url 'news-form' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Salvar</button>
+    </form>
 {% endblock %}
